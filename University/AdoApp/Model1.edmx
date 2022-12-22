@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище UniversityModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicLoad">
+          <Key>
+            <PropertyRef Name="id_AcademicLoad" />
+          </Key>
+          <Property Name="id_AcademicLoad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Subject" Type="int" Nullable="false" />
+          <Property Name="id_StudyYear" Type="int" Nullable="false" />
+          <Property Name="Semester" Type="int" Nullable="false" />
+          <Property Name="id_ControlWork" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="id_City" />
+          </Key>
+          <Property Name="id_City" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ControlWork">
+          <Key>
+            <PropertyRef Name="id_ControlWork" />
+          </Key>
+          <Property Name="id_ControlWork" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id_Department" />
+          </Key>
+          <Property Name="id_Department" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number_Room" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Quantity_Teachers" Type="int" Nullable="false" />
+          <Property Name="id_Faculty" Type="int" Nullable="false" />
+          <Property Name="Surname_Manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName_Manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LName_Manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "University.dbo.Department_AcademicLoad" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Department_AcademicLoad">
+          <Key>
+            <PropertyRef Name="id_Department" />
+            <PropertyRef Name="id_AcademicLoad" />
+          </Key>
+          <Property Name="id_Department" Type="int" Nullable="false" />
+          <Property Name="id_AcademicLoad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="id_Faculty" />
+          </Key>
+          <Property Name="id_Faculty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Faculty" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number_Building" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Surname_Director" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName_Director" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LName_Director" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="id_Group" />
+          </Key>
+          <Property Name="id_Group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity_Students" Type="int" Nullable="false" />
+          <Property Name="id_AcademicLoad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id_Post" />
+          </Key>
+          <Property Name="id_Post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="id_Sex" />
+          </Key>
+          <Property Name="id_Sex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudyYear">
+          <Key>
+            <PropertyRef Name="id_StudyYear" />
+          </Key>
+          <Property Name="id_StudyYear" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start_Year" Type="int" Nullable="false" />
+          <Property Name="End_Year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id_Subject" />
+          </Key>
+          <Property Name="id_Subject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity_Hours" Type="int" Nullable="false" />
+          <Property Name="id_Teacher" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id_Teacher" />
+          </Key>
+          <Property Name="id_Teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_Start_Work" Type="date" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Experience" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="id_Post" Type="int" Nullable="false" />
+          <Property Name="id_Sex" Type="int" Nullable="false" />
+          <Property Name="id_City" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AcademicLoad_ControlWork">
+          <End Role="ControlWork" Type="Self.ControlWork" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ControlWork">
+              <PropertyRef Name="id_ControlWork" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="id_ControlWork" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicLoad_StudyYear">
+          <End Role="StudyYear" Type="Self.StudyYear" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyYear">
+              <PropertyRef Name="id_StudyYear" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="id_StudyYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicLoad_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_Subject" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_AcademicLoad_AcademicLoad">
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="1" />
+          <End Role="Department_AcademicLoad" Type="Self.Department_AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLoad">
+              <PropertyRef Name="id_AcademicLoad" />
+            </Principal>
+            <Dependent Role="Department_AcademicLoad">
+              <PropertyRef Name="id_AcademicLoad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_AcademicLoad_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Department_AcademicLoad" Type="Self.Department_AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="id_Department" />
+            </Principal>
+            <Dependent Role="Department_AcademicLoad">
+              <PropertyRef Name="id_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Faculty">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="id_Faculty" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="id_Faculty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_AcademicLoad">
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLoad">
+              <PropertyRef Name="id_AcademicLoad" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="id_AcademicLoad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_Teacher" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="id_City" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="id_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="id_Post" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="id_Post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_Sex">
+          <End Role="Sex" Type="Self.Sex" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="id_Sex" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="id_Sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище UniversityModelContainer">
+          <EntitySet Name="AcademicLoad" EntityType="Self.AcademicLoad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ControlWork" EntityType="Self.ControlWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyYear" EntityType="Self.StudyYear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department_AcademicLoad" EntityType="Self.Department_AcademicLoad" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Department_AcademicLoad].[id_Department] AS [id_Department], 
+    [Department_AcademicLoad].[id_AcademicLoad] AS [id_AcademicLoad]
+    FROM [dbo].[Department_AcademicLoad] AS [Department_AcademicLoad]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AcademicLoad_ControlWork" Association="Self.FK_AcademicLoad_ControlWork">
+            <End Role="ControlWork" EntitySet="ControlWork" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicLoad_StudyYear" Association="Self.FK_AcademicLoad_StudyYear">
+            <End Role="StudyYear" EntitySet="StudyYear" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicLoad_Subject" Association="Self.FK_AcademicLoad_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_AcademicLoad_AcademicLoad" Association="Self.FK_Department_AcademicLoad_AcademicLoad">
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+            <End Role="Department_AcademicLoad" EntitySet="Department_AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_AcademicLoad_Department" Association="Self.FK_Department_AcademicLoad_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Department_AcademicLoad" EntitySet="Department_AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_AcademicLoad" Association="Self.FK_Group_AcademicLoad">
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_City" Association="Self.FK_Teacher_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_Post" Association="Self.FK_Teacher_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_Sex" Association="Self.FK_Teacher_Sex">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UniversityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicLoad">
+          <Key>
+            <PropertyRef Name="id_AcademicLoad" />
+          </Key>
+          <Property Name="id_AcademicLoad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Subject" Type="Int32" Nullable="false" />
+          <Property Name="id_StudyYear" Type="Int32" Nullable="false" />
+          <Property Name="Semester" Type="Int32" Nullable="false" />
+          <Property Name="id_ControlWork" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ControlWork" Relationship="Self.FK_AcademicLoad_ControlWork" FromRole="AcademicLoad" ToRole="ControlWork" />
+          <NavigationProperty Name="StudyYear" Relationship="Self.FK_AcademicLoad_StudyYear" FromRole="AcademicLoad" ToRole="StudyYear" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_AcademicLoad_Subject" FromRole="AcademicLoad" ToRole="Subject" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Group_AcademicLoad" FromRole="AcademicLoad" ToRole="Group" />
+          <NavigationProperty Name="Department" Relationship="Self.Department_AcademicLoad" FromRole="AcademicLoad" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="id_City" />
+          </Key>
+          <Property Name="id_City" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_City" FromRole="City" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="ControlWork">
+          <Key>
+            <PropertyRef Name="id_ControlWork" />
+          </Key>
+          <Property Name="id_ControlWork" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.FK_AcademicLoad_ControlWork" FromRole="ControlWork" ToRole="AcademicLoad" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id_Department" />
+          </Key>
+          <Property Name="id_Department" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number_Room" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity_Teachers" Type="Int32" Nullable="false" />
+          <Property Name="id_Faculty" Type="Int32" Nullable="false" />
+          <Property Name="Surname_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FName_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LName_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK_Department_Faculty" FromRole="Department" ToRole="Faculty" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.Department_AcademicLoad" FromRole="Department" ToRole="AcademicLoad" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="id_Faculty" />
+          </Key>
+          <Property Name="id_Faculty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Faculty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Number_Building" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname_Director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FName_Director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LName_Director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="id_Group" />
+          </Key>
+          <Property Name="id_Group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity_Students" Type="Int32" Nullable="false" />
+          <Property Name="id_AcademicLoad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.FK_Group_AcademicLoad" FromRole="Group" ToRole="AcademicLoad" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id_Post" />
+          </Key>
+          <Property Name="id_Post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Post" FromRole="Post" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="id_Sex" />
+          </Key>
+          <Property Name="id_Sex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Sex" FromRole="Sex" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="StudyYear">
+          <Key>
+            <PropertyRef Name="id_StudyYear" />
+          </Key>
+          <Property Name="id_StudyYear" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start_Year" Type="Int32" Nullable="false" />
+          <Property Name="End_Year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.FK_AcademicLoad_StudyYear" FromRole="StudyYear" ToRole="AcademicLoad" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id_Subject" />
+          </Key>
+          <Property Name="id_Subject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity_Hours" Type="Int32" Nullable="false" />
+          <Property Name="id_Teacher" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.FK_AcademicLoad_Subject" FromRole="Subject" ToRole="AcademicLoad" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Subject_Teacher" FromRole="Subject" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id_Teacher" />
+          </Key>
+          <Property Name="id_Teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Start_Work" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Experience" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="id_Post" Type="Int32" Nullable="false" />
+          <Property Name="id_Sex" Type="Int32" Nullable="false" />
+          <Property Name="id_City" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Teacher_City" FromRole="Teacher" ToRole="City" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Teacher_Post" FromRole="Teacher" ToRole="Post" />
+          <NavigationProperty Name="Sex" Relationship="Self.FK_Teacher_Sex" FromRole="Teacher" ToRole="Sex" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Teacher" FromRole="Teacher" ToRole="Subject" />
+        </EntityType>
+        <Association Name="FK_AcademicLoad_ControlWork">
+          <End Role="ControlWork" Type="Self.ControlWork" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ControlWork">
+              <PropertyRef Name="id_ControlWork" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="id_ControlWork" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicLoad_StudyYear">
+          <End Role="StudyYear" Type="Self.StudyYear" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyYear">
+              <PropertyRef Name="id_StudyYear" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="id_StudyYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicLoad_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_Subject" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_AcademicLoad">
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLoad">
+              <PropertyRef Name="id_AcademicLoad" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="id_AcademicLoad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="id_City" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="id_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Faculty">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="id_Faculty" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="id_Faculty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="id_Post" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="id_Post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_Sex">
+          <End Role="Sex" Type="Self.Sex" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="id_Sex" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="id_Sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_Teacher" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Department_AcademicLoad">
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="UniversityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicLoad" EntityType="Self.AcademicLoad" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="ControlWork" EntityType="Self.ControlWork" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" />
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Sex" EntityType="Self.Sex" />
+          <EntitySet Name="StudyYear" EntityType="Self.StudyYear" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <AssociationSet Name="FK_AcademicLoad_ControlWork" Association="Self.FK_AcademicLoad_ControlWork">
+            <End Role="ControlWork" EntitySet="ControlWork" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicLoad_StudyYear" Association="Self.FK_AcademicLoad_StudyYear">
+            <End Role="StudyYear" EntitySet="StudyYear" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicLoad_Subject" Association="Self.FK_AcademicLoad_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_AcademicLoad" Association="Self.FK_Group_AcademicLoad">
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_City" Association="Self.FK_Teacher_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_Post" Association="Self.FK_Teacher_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_Sex" Association="Self.FK_Teacher_Sex">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="Department_AcademicLoad" Association="Self.Department_AcademicLoad">
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UniversityModelContainer" CdmEntityContainer="UniversityEntities">
+          <EntitySetMapping Name="AcademicLoad">
+            <EntityTypeMapping TypeName="UniversityModel.AcademicLoad">
+              <MappingFragment StoreEntitySet="AcademicLoad">
+                <ScalarProperty Name="id_AcademicLoad" ColumnName="id_AcademicLoad" />
+                <ScalarProperty Name="id_Subject" ColumnName="id_Subject" />
+                <ScalarProperty Name="id_StudyYear" ColumnName="id_StudyYear" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="id_ControlWork" ColumnName="id_ControlWork" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="UniversityModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="id_City" ColumnName="id_City" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ControlWork">
+            <EntityTypeMapping TypeName="UniversityModel.ControlWork">
+              <MappingFragment StoreEntitySet="ControlWork">
+                <ScalarProperty Name="id_ControlWork" ColumnName="id_ControlWork" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="UniversityModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="id_Department" ColumnName="id_Department" />
+                <ScalarProperty Name="Number_Room" ColumnName="Number_Room" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Quantity_Teachers" ColumnName="Quantity_Teachers" />
+                <ScalarProperty Name="id_Faculty" ColumnName="id_Faculty" />
+                <ScalarProperty Name="Surname_Manager" ColumnName="Surname_Manager" />
+                <ScalarProperty Name="FName_Manager" ColumnName="FName_Manager" />
+                <ScalarProperty Name="LName_Manager" ColumnName="LName_Manager" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty">
+            <EntityTypeMapping TypeName="UniversityModel.Faculty">
+              <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="id_Faculty" ColumnName="id_Faculty" />
+                <ScalarProperty Name="Name_Faculty" ColumnName="Name_Faculty" />
+                <ScalarProperty Name="Number_Building" ColumnName="Number_Building" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Surname_Director" ColumnName="Surname_Director" />
+                <ScalarProperty Name="FName_Director" ColumnName="FName_Director" />
+                <ScalarProperty Name="LName_Director" ColumnName="LName_Director" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="UniversityModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="id_Group" ColumnName="id_Group" />
+                <ScalarProperty Name="Quantity_Students" ColumnName="Quantity_Students" />
+                <ScalarProperty Name="id_AcademicLoad" ColumnName="id_AcademicLoad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="UniversityModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="id_Post" ColumnName="id_Post" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sex">
+            <EntityTypeMapping TypeName="UniversityModel.Sex">
+              <MappingFragment StoreEntitySet="Sex">
+                <ScalarProperty Name="id_Sex" ColumnName="id_Sex" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudyYear">
+            <EntityTypeMapping TypeName="UniversityModel.StudyYear">
+              <MappingFragment StoreEntitySet="StudyYear">
+                <ScalarProperty Name="id_StudyYear" ColumnName="id_StudyYear" />
+                <ScalarProperty Name="Start_Year" ColumnName="Start_Year" />
+                <ScalarProperty Name="End_Year" ColumnName="End_Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="UniversityModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="id_Subject" ColumnName="id_Subject" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Quantity_Hours" ColumnName="Quantity_Hours" />
+                <ScalarProperty Name="id_Teacher" ColumnName="id_Teacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UniversityModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="UniversityModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="id_Teacher" ColumnName="id_Teacher" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Date_Start_Work" ColumnName="Date_Start_Work" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="id_Post" ColumnName="id_Post" />
+                <ScalarProperty Name="id_Sex" ColumnName="id_Sex" />
+                <ScalarProperty Name="id_City" ColumnName="id_City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Department_AcademicLoad" TypeName="UniversityModel.Department_AcademicLoad" StoreEntitySet="Department_AcademicLoad">
+            <EndProperty Name="AcademicLoad">
+              <ScalarProperty Name="id_AcademicLoad" ColumnName="id_AcademicLoad" />
+            </EndProperty>
+            <EndProperty Name="Department">
+              <ScalarProperty Name="id_Department" ColumnName="id_Department" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

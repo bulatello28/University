@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fc0233166fbe4d2d9af899ddac33f47b" Name="Diagram1">
+        <EntityTypeShape EntityType="UniversityModel.AcademicLoad" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.City" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.ControlWork" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Department" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Faculty" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Group" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Post" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Sex" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.StudyYear" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Subject" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Teacher" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="UniversityModel.FK_AcademicLoad_ControlWork" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_AcademicLoad_StudyYear" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_AcademicLoad_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Group_AcademicLoad" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Teacher_City" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Department_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Teacher_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Teacher_Sex" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Subject_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.Department_AcademicLoad" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
